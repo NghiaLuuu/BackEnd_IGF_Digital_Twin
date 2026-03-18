@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '#database';
-import { PrismaClient as ProjectPrismaClient } from '#gen-project/client';
+import { DatabaseModule } from '@database';
+import { PrismaClient as ProjectPrismaClient } from '@gen-project/client';
 import { PROJECT_REPOSITORY } from './contracts/project-repository.interface';
 import { ProjectServiceController } from './controllers/project-service.controller';
 import { ProjectRepository } from './repositories/project.repository';

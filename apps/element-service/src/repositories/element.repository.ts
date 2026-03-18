@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '#database';
-import { PrismaClient as ElementPrismaClient } from '#gen-element/client';
+import { PrismaService } from '@database';
+import { PrismaClient as ElementPrismaClient } from '@gen-element/client';
 import type { IElementRepository } from '../contracts/element-repository.interface';
 import type { ElementHealthModel } from '../models/element-health.model';
 import type { ElementInputModel, ElementModel } from '../models/element.model';

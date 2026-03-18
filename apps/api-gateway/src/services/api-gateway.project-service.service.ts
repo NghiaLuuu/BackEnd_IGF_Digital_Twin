@@ -8,7 +8,7 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_PROJECT_SERVICE_NAME } from '#shared';
+import { GRPC_PROJECT_SERVICE_NAME } from '@shared';
 import type {
   CreateProjectRequest,
   CreateProjectResponse,
@@ -20,7 +20,7 @@ import type {
   FindOneProjectResponse,
   UpdateProjectRequest,
   UpdateProjectResponse,
-} from '#grpc/project';
+} from '@grpc/project';
 
 type ProjectGrpcService = {
   createProject(input: CreateProjectRequest): Observable<CreateProjectResponse>;

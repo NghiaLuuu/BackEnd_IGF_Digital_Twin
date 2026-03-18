@@ -1,3 +1,4 @@
+import 'tsconfig-paths/register';
 import { NestFactory } from '@nestjs/core';
 import { ProjectServiceModule } from './project-service.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
@@ -8,7 +9,7 @@ import {
   GRPC_PROJECT_PACKAGE,
   GRPC_PROJECT_PROTO_PATH,
   GRPC_PROJECT_URL,
-} from '#shared';
+} from '@shared';
 
 async function bootstrap() {
   loadEnv({ path: resolve(process.cwd(), '.env') });

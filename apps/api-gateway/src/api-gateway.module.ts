@@ -19,7 +19,7 @@ import {
   GRPC_PROJECT_PACKAGE,
   GRPC_PROJECT_PROTO_PATH,
   GRPC_PROJECT_URL,
-} from '#shared';
+} from '@shared';
 
 @Module({
   imports: [

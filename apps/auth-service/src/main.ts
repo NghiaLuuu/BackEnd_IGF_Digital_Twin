@@ -1,3 +1,4 @@
+import 'tsconfig-paths/register';
 import { NestFactory } from '@nestjs/core';
 import { AuthServiceModule } from './auth-service.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
@@ -8,7 +9,7 @@ import {
   GRPC_AUTH_PACKAGE,
   GRPC_AUTH_PROTO_PATH,
   GRPC_AUTH_URL,
-} from '#shared';
+} from '@shared';
 
 async function bootstrap() {
   loadEnv({ path: resolve(process.cwd(), 'apps/auth-service/.env') });

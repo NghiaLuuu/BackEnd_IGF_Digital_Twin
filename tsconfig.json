@@ -22,6 +22,22 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "ignoreDeprecations": "5.0",
-    "paths": {}
+    "paths": {
+      "@app-auth/*": ["./apps/auth-service/src/*"],
+      "@app-element/*": ["./apps/element-service/src/*"],
+      "@app-gateway/*": ["./apps/api-gateway/src/*"],
+      "@app-project/*": ["./apps/project-service/src/*"],
+      "@shared": ["./libs/shared/src/index"],
+      "@shared/*": ["./libs/shared/src/*"],
+      "@grpc/auth": ["./libs/shared/src/grpc/auth-types"],
+      "@grpc/element": ["./libs/shared/src/grpc/element-types"],
+      "@grpc/project": ["./libs/shared/src/grpc/project-types"],
+      "@grpc/types": ["./libs/shared/src/grpc/index"],
+      "@database": ["./libs/database/src/index"],
+      "@database/*": ["./libs/database/src/*"],
+      "@gen-auth/client": ["./apps/auth-service/generated/client/index"],
+      "@gen-element/client": ["./apps/element-service/generated/client/index"],
+      "@gen-project/client": ["./apps/project-service/generated/client/index"]
+    }
   }
 }

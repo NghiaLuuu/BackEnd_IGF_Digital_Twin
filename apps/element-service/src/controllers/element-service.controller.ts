@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import { GRPC_ELEMENT_SERVICE_NAME } from '#shared';
+import { GRPC_ELEMENT_SERVICE_NAME } from '@shared';
 import { ListProjectElementsDto } from '../dto/list-project-elements.dto';
 import { SaveProjectElementsDto } from '../dto/save-project-elements.dto';
 import { ElementServiceService } from '../services/element-service.service';

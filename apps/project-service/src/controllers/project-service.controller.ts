@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import { GRPC_PROJECT_SERVICE_NAME } from '#shared';
+import { GRPC_PROJECT_SERVICE_NAME } from '@shared';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { DeleteProjectDto } from '../dto/delete-project.dto';
 import { FindAllProjectsDto } from '../dto/find-all-projects.dto';

@@ -8,14 +8,14 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_ELEMENT_SERVICE_NAME } from '#shared';
+import { GRPC_ELEMENT_SERVICE_NAME } from '@shared';
 import type {
   ElementInput,
   ListProjectElementsRequest,
   ListProjectElementsResponse,
   SaveProjectElementsRequest,
   SaveProjectElementsResponse,
-} from '#grpc/element';
+} from '@grpc/element';
 
 type ElementGrpcService = {
   saveProjectElements(

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '#database';
-import { PrismaClient as ElementPrismaClient } from '#gen-element/client';
+import { DatabaseModule } from '@database';
+import { PrismaClient as ElementPrismaClient } from '@gen-element/client';
 import { ELEMENT_REPOSITORY } from './contracts/element-repository.interface';
 import { ElementServiceController } from './controllers/element-service.controller';
 import { ElementRepository } from './repositories/element.repository';

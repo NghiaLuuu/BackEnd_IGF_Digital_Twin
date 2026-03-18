@@ -8,13 +8,13 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_AUTH_SERVICE_NAME } from '#shared';
+import { GRPC_AUTH_SERVICE_NAME } from '@shared';
 import type {
   GetProfileRequest,
   LoginRequest,
   LoginResponse,
   ProfileResponse,
-} from '#grpc/auth';
+} from '@grpc/auth';
 
 type GetProfileInput = {
   targetUserId: string;
