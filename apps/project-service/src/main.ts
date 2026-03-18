@@ -7,8 +7,8 @@ import { config as loadEnv } from 'dotenv';
 import { resolve } from 'node:path';
 import {
   GRPC_PROJECT_PACKAGE,
-  GRPC_PROJECT_PROTO_PATH,
-  GRPC_PROJECT_URL,
+  getGrpcProjectProtoPath,
+  getGrpcProjectUrl,
 } from '@shared';
 
 async function bootstrap() {
@@ -24,8 +24,8 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         package: String(GRPC_PROJECT_PACKAGE),
-        protoPath: String(GRPC_PROJECT_PROTO_PATH),
-        url: String(GRPC_PROJECT_URL),
+        protoPath: getGrpcProjectProtoPath(),
+        url: getGrpcProjectUrl(),
         loader: {
           keepCase: true,
           arrays: true,

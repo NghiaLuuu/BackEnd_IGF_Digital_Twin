@@ -16,10 +16,15 @@ type PrismaClientConstructor<TClient extends PrismaClientLike> = new (
   ...args: any[]
 ) => TClient;
 
+type DatabaseModuleOptions = {
+  envKeys?: string[];
+};
+
 @Module({})
 export class DatabaseModule {
   static forRoot<TClient extends PrismaClientLike>(
     prismaClient: PrismaClientConstructor<TClient>,
+    options?: DatabaseModuleOptions,
   ): DynamicModule {
     return {
       module: DatabaseModule,
@@ -27,10 +32,15 @@ export class DatabaseModule {
         {
           provide: PRISMA_CLIENT,
           useFactory: () => {
-            const connectionString = process.env.DATABASE_URL;
+            const envKeys = options?.envKeys ?? ['DATABASE_URL'];
+            const connectionString = envKeys
+              .map((key) => process.env[key])
+              .find((value) => Boolean(value));
 
             if (!connectionString) {
-              throw new Error('Missing DATABASE_URL environment variable');
+              throw new Error(
+                `Missing database environment variable. Checked: ${envKeys.join(', ')}`,
+              );
             }
 
             return new prismaClient({

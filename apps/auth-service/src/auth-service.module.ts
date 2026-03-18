@@ -9,7 +9,9 @@ import { PrismaClient as AuthPrismaClient } from '@gen-auth/client';
 
 @Module({
   imports: [
-    DatabaseModule.forRoot(AuthPrismaClient),
+    DatabaseModule.forRoot(AuthPrismaClient, {
+      envKeys: ['AUTH_DATABASE_URL', 'DATABASE_URL'],
+    }),
     JwtModule.register({
       secret: process.env.JWT_SECRET ?? 'dev-auth-secret-change-me',
     }),

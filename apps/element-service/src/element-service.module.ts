@@ -7,7 +7,11 @@ import { ElementRepository } from './repositories/element.repository';
 import { ElementServiceService } from './services/element-service.service';
 
 @Module({
-  imports: [DatabaseModule.forRoot(ElementPrismaClient)],
+  imports: [
+    DatabaseModule.forRoot(ElementPrismaClient, {
+      envKeys: ['ELEMENT_DATABASE_URL', 'DATABASE_URL'],
+    }),
+  ],
   controllers: [ElementServiceController],
   providers: [
     {

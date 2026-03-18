@@ -7,8 +7,8 @@ import { config as loadEnv } from 'dotenv';
 import { resolve } from 'node:path';
 import {
   GRPC_AUTH_PACKAGE,
-  GRPC_AUTH_PROTO_PATH,
-  GRPC_AUTH_URL,
+  getGrpcAuthProtoPath,
+  getGrpcAuthUrl,
 } from '@shared';
 
 async function bootstrap() {
@@ -20,8 +20,8 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         package: String(GRPC_AUTH_PACKAGE),
-        protoPath: String(GRPC_AUTH_PROTO_PATH),
-        url: String(GRPC_AUTH_URL),
+        protoPath: getGrpcAuthProtoPath(),
+        url: getGrpcAuthUrl(),
         loader: {
           keepCase: true,
           arrays: true,

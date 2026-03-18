@@ -11,14 +11,14 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
 import {
   GRPC_AUTH_PACKAGE,
-  GRPC_AUTH_PROTO_PATH,
-  GRPC_AUTH_URL,
+  getGrpcAuthProtoPath,
+  getGrpcAuthUrl,
   GRPC_ELEMENT_PACKAGE,
-  GRPC_ELEMENT_PROTO_PATH,
-  GRPC_ELEMENT_URL,
+  getGrpcElementProtoPath,
+  getGrpcElementUrl,
   GRPC_PROJECT_PACKAGE,
-  GRPC_PROJECT_PROTO_PATH,
-  GRPC_PROJECT_URL,
+  getGrpcProjectProtoPath,
+  getGrpcProjectUrl,
 } from '@shared';
 
 @Module({
@@ -32,8 +32,8 @@ import {
         transport: Transport.GRPC,
         options: {
           package: String(GRPC_AUTH_PACKAGE),
-          protoPath: String(GRPC_AUTH_PROTO_PATH),
-          url: String(GRPC_AUTH_URL),
+          protoPath: getGrpcAuthProtoPath(),
+          url: getGrpcAuthUrl(),
           loader: {
             keepCase: true,
             arrays: true,
@@ -45,8 +45,8 @@ import {
         transport: Transport.GRPC,
         options: {
           package: String(GRPC_PROJECT_PACKAGE),
-          protoPath: String(GRPC_PROJECT_PROTO_PATH),
-          url: String(GRPC_PROJECT_URL),
+          protoPath: getGrpcProjectProtoPath(),
+          url: getGrpcProjectUrl(),
           loader: {
             keepCase: true,
             arrays: true,
@@ -58,8 +58,8 @@ import {
         transport: Transport.GRPC,
         options: {
           package: String(GRPC_ELEMENT_PACKAGE),
-          protoPath: String(GRPC_ELEMENT_PROTO_PATH),
-          url: String(GRPC_ELEMENT_URL),
+          protoPath: getGrpcElementProtoPath(),
+          url: getGrpcElementUrl(),
           loader: {
             keepCase: true,
             arrays: true,

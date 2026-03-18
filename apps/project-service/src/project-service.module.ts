@@ -7,7 +7,11 @@ import { ProjectRepository } from './repositories/project.repository';
 import { ProjectServiceService } from './services/project-service.service';
 
 @Module({
-  imports: [DatabaseModule.forRoot(ProjectPrismaClient)],
+  imports: [
+    DatabaseModule.forRoot(ProjectPrismaClient, {
+      envKeys: ['PROJECT_DATABASE_URL', 'DATABASE_URL'],
+    }),
+  ],
   controllers: [ProjectServiceController],
   providers: [
     {
