@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { AuthServiceService } from '../services/auth-service.service';
-import { GRPC_AUTH_SERVICE_NAME } from '../../../../libs/shared/src';
+import { GRPC_AUTH_SERVICE_NAME } from '#shared';
 import { LoginDto } from '../dto/login.dto';
 import { ProfileDto } from '../dto/profile.dto';
 

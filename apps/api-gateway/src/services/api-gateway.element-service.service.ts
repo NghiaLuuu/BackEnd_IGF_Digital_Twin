@@ -8,22 +8,22 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_ELEMENT_SERVICE_NAME } from '../../../../libs/shared/src';
+import { GRPC_ELEMENT_SERVICE_NAME } from '#shared';
 import type {
   ElementInput,
   ListProjectElementsRequest,
-  ListProjectElementsResponse__Output,
+  ListProjectElementsResponse,
   SaveProjectElementsRequest,
-  SaveProjectElementsResponse__Output,
+  SaveProjectElementsResponse,
 } from '#grpc/element';
 
 type ElementGrpcService = {
   saveProjectElements(
     input: SaveProjectElementsRequest,
-  ): Observable<SaveProjectElementsResponse__Output>;
+  ): Observable<SaveProjectElementsResponse>;
   listProjectElements(
     input: ListProjectElementsRequest,
-  ): Observable<ListProjectElementsResponse__Output>;
+  ): Observable<ListProjectElementsResponse>;
 };
 
 @Injectable()
@@ -45,7 +45,7 @@ export class ApiGatewayElementService implements OnModuleInit {
     requesterUserId: string;
     requesterRoles: string[];
     elements: ElementInput[];
-  }): Promise<SaveProjectElementsResponse__Output> {
+  }): Promise<SaveProjectElementsResponse> {
     try {
       return await firstValueFrom(
         this.elementService
@@ -66,7 +66,7 @@ export class ApiGatewayElementService implements OnModuleInit {
     projectId: string;
     requesterUserId: string;
     requesterRoles: string[];
-  }): Promise<ListProjectElementsResponse__Output> {
+  }): Promise<ListProjectElementsResponse> {
     try {
       return await firstValueFrom(
         this.elementService

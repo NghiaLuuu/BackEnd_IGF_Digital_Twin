@@ -8,7 +8,7 @@ import {
   GRPC_AUTH_PACKAGE,
   GRPC_AUTH_PROTO_PATH,
   GRPC_AUTH_URL,
-} from '../../../libs/shared/src';
+} from '#shared';
 
 async function bootstrap() {
   loadEnv({ path: resolve(process.cwd(), 'apps/auth-service/.env') });

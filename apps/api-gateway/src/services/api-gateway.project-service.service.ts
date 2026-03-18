@@ -8,36 +8,30 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_PROJECT_SERVICE_NAME } from '../../../../libs/shared/src';
+import { GRPC_PROJECT_SERVICE_NAME } from '#shared';
 import type {
   CreateProjectRequest,
-  CreateProjectResponse__Output,
+  CreateProjectResponse,
   DeleteProjectRequest,
-  DeleteProjectResponse__Output,
+  DeleteProjectResponse,
   FindAllProjectsRequest,
-  FindAllProjectsResponse__Output,
+  FindAllProjectsResponse,
   FindOneProjectRequest,
-  FindOneProjectResponse__Output,
+  FindOneProjectResponse,
   UpdateProjectRequest,
-  UpdateProjectResponse__Output,
+  UpdateProjectResponse,
 } from '#grpc/project';
 
 type ProjectGrpcService = {
-  createProject(
-    input: CreateProjectRequest,
-  ): Observable<CreateProjectResponse__Output>;
+  createProject(input: CreateProjectRequest): Observable<CreateProjectResponse>;
   findAllProjects(
     input: FindAllProjectsRequest,
-  ): Observable<FindAllProjectsResponse__Output>;
+  ): Observable<FindAllProjectsResponse>;
   findOneProject(
     input: FindOneProjectRequest,
-  ): Observable<FindOneProjectResponse__Output>;
-  updateProject(
-    input: UpdateProjectRequest,
-  ): Observable<UpdateProjectResponse__Output>;
-  deleteProject(
-    input: DeleteProjectRequest,
-  ): Observable<DeleteProjectResponse__Output>;
+  ): Observable<FindOneProjectResponse>;
+  updateProject(input: UpdateProjectRequest): Observable<UpdateProjectResponse>;
+  deleteProject(input: DeleteProjectRequest): Observable<DeleteProjectResponse>;
 };
 
 @Injectable()
@@ -56,7 +50,7 @@ export class ApiGatewayProjectService implements OnModuleInit {
 
   async createProject(
     input: CreateProjectRequest,
-  ): Promise<CreateProjectResponse__Output> {
+  ): Promise<CreateProjectResponse> {
     try {
       return await firstValueFrom(
         this.projectService.createProject(input).pipe(timeout(3000)),
@@ -68,7 +62,7 @@ export class ApiGatewayProjectService implements OnModuleInit {
 
   async findAllProjects(
     input: FindAllProjectsRequest,
-  ): Promise<FindAllProjectsResponse__Output> {
+  ): Promise<FindAllProjectsResponse> {
     try {
       return await firstValueFrom(
         this.projectService.findAllProjects(input).pipe(timeout(3000)),
@@ -80,7 +74,7 @@ export class ApiGatewayProjectService implements OnModuleInit {
 
   async findOneProject(
     input: FindOneProjectRequest,
-  ): Promise<FindOneProjectResponse__Output> {
+  ): Promise<FindOneProjectResponse> {
     try {
       return await firstValueFrom(
         this.projectService.findOneProject(input).pipe(timeout(3000)),
@@ -92,7 +86,7 @@ export class ApiGatewayProjectService implements OnModuleInit {
 
   async updateProject(
     input: UpdateProjectRequest,
-  ): Promise<UpdateProjectResponse__Output> {
+  ): Promise<UpdateProjectResponse> {
     try {
       return await firstValueFrom(
         this.projectService.updateProject(input).pipe(timeout(3000)),
@@ -104,7 +98,7 @@ export class ApiGatewayProjectService implements OnModuleInit {
 
   async deleteProject(
     input: DeleteProjectRequest,
-  ): Promise<DeleteProjectResponse__Output> {
+  ): Promise<DeleteProjectResponse> {
     try {
       return await firstValueFrom(
         this.projectService.deleteProject(input).pipe(timeout(3000)),

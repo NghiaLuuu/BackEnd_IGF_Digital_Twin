@@ -8,7 +8,7 @@ import {
   GRPC_ELEMENT_PACKAGE,
   GRPC_ELEMENT_PROTO_PATH,
   GRPC_ELEMENT_URL,
-} from '../../../libs/shared/src';
+} from '#shared';
 
 async function bootstrap() {
   loadEnv({ path: resolve(process.cwd(), '.env') });

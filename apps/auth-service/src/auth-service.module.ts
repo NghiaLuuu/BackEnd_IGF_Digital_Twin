@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { DatabaseModule } from '../../../libs/database/src';
+import { DatabaseModule } from '#database';
 import { AUTH_REPOSITORY } from './contracts/auth-repository.interface';
 import { AuthRpcController } from './controllers/auth-service.controller';
 import { AuthRepository } from './repositories/auth.repository';
 import { AuthServiceService } from './services/auth-service.service';
-import { PrismaClient as AuthPrismaClient } from '../generated/client';
+import { PrismaClient as AuthPrismaClient } from '#gen-auth/client';
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../../../libs/database/src';
-import { PrismaClient as AuthPrismaClient } from '../../generated/client';
+import { PrismaService } from '#database';
+import { PrismaClient as AuthPrismaClient } from '#gen-auth/client';
 import { IAuthRepository } from '../contracts/auth-repository.interface';
 import { AuthUserModel } from '../models/auth-user.model';
 

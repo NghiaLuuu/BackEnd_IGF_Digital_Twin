@@ -8,12 +8,12 @@ import {
 import type { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom, timeout } from 'rxjs';
 import type { Observable } from 'rxjs';
-import { GRPC_AUTH_SERVICE_NAME } from '../../../../libs/shared/src';
+import { GRPC_AUTH_SERVICE_NAME } from '#shared';
 import type {
   GetProfileRequest,
   LoginRequest,
-  LoginResponse__Output,
-  ProfileResponse__Output,
+  LoginResponse,
+  ProfileResponse,
 } from '#grpc/auth';
 
 type GetProfileInput = {
@@ -23,8 +23,8 @@ type GetProfileInput = {
 };
 
 type AuthGrpcService = {
-  login(input: LoginRequest): Observable<LoginResponse__Output>;
-  getProfile(input: GetProfileRequest): Observable<ProfileResponse__Output>;
+  login(input: LoginRequest): Observable<LoginResponse>;
+  getProfile(input: GetProfileRequest): Observable<ProfileResponse>;
 };
 
 @Injectable()
@@ -41,7 +41,7 @@ export class ApiGatewayAuthService implements OnModuleInit {
     );
   }
 
-  async login(input: LoginRequest): Promise<LoginResponse__Output> {
+  async login(input: LoginRequest): Promise<LoginResponse> {
     try {
       return await firstValueFrom(
         this.authService.login(input).pipe(timeout(3000)),
@@ -51,7 +51,7 @@ export class ApiGatewayAuthService implements OnModuleInit {
     }
   }
 
-  async getProfile(input: GetProfileInput): Promise<ProfileResponse__Output> {
+  async getProfile(input: GetProfileInput): Promise<ProfileResponse> {
     try {
       return await firstValueFrom(
         this.authService
