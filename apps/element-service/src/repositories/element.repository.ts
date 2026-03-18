@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@database';
-import { PrismaClient as ElementPrismaClient } from '@gen-element/client';
+import { PrismaService } from '../database/prisma.service';
 import type { IElementRepository } from '../contracts/element-repository.interface';
 import type { ElementHealthModel } from '../models/element-health.model';
 import type { ElementInputModel, ElementModel } from '../models/element.model';
 
 @Injectable()
 export class ElementRepository implements IElementRepository {
-  constructor(private readonly db: PrismaService<ElementPrismaClient>) {}
+  constructor(private readonly db: PrismaService) {}
 
   async getHealth(): Promise<ElementHealthModel> {
     return {
@@ -21,7 +20,7 @@ export class ElementRepository implements IElementRepository {
     requesterUserId: string;
     elements: ElementInputModel[];
   }): Promise<ElementModel[]> {
-    await this.db.client.$transaction(async (tx) => {
+    await this.db.$transaction(async (tx) => {
       await tx.element.deleteMany({ where: { projectId: input.projectId } });
 
       if (input.elements.length > 0) {
@@ -45,7 +44,7 @@ export class ElementRepository implements IElementRepository {
   }
 
   async listProjectElements(projectId: string): Promise<ElementModel[]> {
-    return this.db.client.element.findMany({
+    return this.db.element.findMany({
       where: { projectId },
       orderBy: { createdAt: 'asc' },
       select: {

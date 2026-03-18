@@ -1,18 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@database';
-import { PrismaClient as AuthPrismaClient } from '@gen-auth/client';
+import { PrismaService } from '../database/prisma.service';
 import { IAuthRepository } from '../contracts/auth-repository.interface';
 import { AuthUserModel } from '../models/auth-user.model';
 
 @Injectable()
 export class AuthRepository implements IAuthRepository {
-  constructor(private readonly db: PrismaService<AuthPrismaClient>) {}
+  constructor(private readonly db: PrismaService) {}
 
   async findByUsernameAndPassword(
     username: string,
     password: string,
   ): Promise<AuthUserModel | null> {
-    const users = await this.db.client.$queryRaw<
+    const users = await this.db.$queryRaw<
       Array<{ user_id: string; username: string; roles: string[] }>
     >`
       SELECT user_id, username, roles
@@ -36,7 +35,7 @@ export class AuthRepository implements IAuthRepository {
   }
 
   async findByUserId(userId: string): Promise<AuthUserModel | null> {
-    const user = await this.db.client.authUser.findUnique({
+    const user = await this.db.authUser.findUnique({
       where: { userId },
       select: {
         userId: true,

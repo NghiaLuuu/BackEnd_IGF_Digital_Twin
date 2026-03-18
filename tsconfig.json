@@ -33,8 +33,6 @@
       "@grpc/element": ["./libs/shared/src/grpc/element-types"],
       "@grpc/project": ["./libs/shared/src/grpc/project-types"],
       "@grpc/types": ["./libs/shared/src/grpc/index"],
-      "@database": ["./libs/database/src/index"],
-      "@database/*": ["./libs/database/src/*"],
       "@gen-auth/client": ["./apps/auth-service/generated/client/index"],
       "@gen-element/client": ["./apps/element-service/generated/client/index"],
       "@gen-project/client": ["./apps/project-service/generated/client/index"]

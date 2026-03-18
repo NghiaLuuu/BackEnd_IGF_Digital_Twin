@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '@database';
-import { PrismaClient as ProjectPrismaClient } from '@gen-project/client';
+import { PrismaService } from '../database/prisma.service';
 import type { IProjectRepository } from '../contracts/project-repository.interface';
 import type { ProjectModel } from '../models/project.model';
 
 @Injectable()
 export class ProjectRepository implements IProjectRepository {
-  constructor(private readonly db: PrismaService<ProjectPrismaClient>) {}
+  constructor(private readonly db: PrismaService) {}
 
   async createProject(input: {
     name: string;
     description: string;
     requesterUserId: string;
   }): Promise<ProjectModel> {
-    return this.db.client.project.create({
+    return this.db.project.create({
       data: {
         name: input.name,
         description: input.description || null,
@@ -50,8 +49,8 @@ export class ProjectRepository implements IProjectRepository {
         }
       : {};
 
-    const [items, total] = await this.db.client.$transaction([
-      this.db.client.project.findMany({
+    const [items, total] = await this.db.$transaction([
+      this.db.project.findMany({
         where,
         skip,
         take: input.limit,
@@ -64,14 +63,14 @@ export class ProjectRepository implements IProjectRepository {
           updatedBy: true,
         },
       }),
-      this.db.client.project.count({ where }),
+      this.db.project.count({ where }),
     ]);
 
     return { items, total };
   }
 
   async findProjectById(projectId: string): Promise<ProjectModel | null> {
-    return this.db.client.project.findUnique({
+    return this.db.project.findUnique({
       where: { projectId },
       select: {
         projectId: true,
@@ -89,7 +88,7 @@ export class ProjectRepository implements IProjectRepository {
     description: string;
     requesterUserId: string;
   }): Promise<ProjectModel> {
-    return this.db.client.project.update({
+    return this.db.project.update({
       where: { projectId: input.projectId },
       data: {
         name: input.name || undefined,
@@ -107,6 +106,6 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   async deleteProject(projectId: string): Promise<void> {
-    await this.db.client.project.delete({ where: { projectId } });
+    await this.db.project.delete({ where: { projectId } });
   }
 }

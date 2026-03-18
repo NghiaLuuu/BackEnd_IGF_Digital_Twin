@@ -12,11 +12,7 @@ import {
 } from '@shared';
 
 async function bootstrap() {
-  loadEnv({ path: resolve(process.cwd(), '.env') });
-  loadEnv({
-    path: resolve(process.cwd(), 'apps/project-service/.env'),
-    override: true,
-  });
+  loadEnv({ path: resolve(process.cwd(), 'apps/project-service/.env') });
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     ProjectServiceModule,
