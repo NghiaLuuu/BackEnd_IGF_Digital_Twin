@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package project;
+
+service ProjectService {
+  rpc CreateProject (CreateProjectRequest) returns (CreateProjectResponse);
+  rpc FindAllProjects (FindAllProjectsRequest) returns (FindAllProjectsResponse);
+  rpc FindOneProject (FindOneProjectRequest) returns (FindOneProjectResponse);
+  rpc UpdateProject (UpdateProjectRequest) returns (UpdateProjectResponse);
+  rpc DeleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
+}
+
+message CreateProjectRequest {
+  string name = 1;
+  string description = 2;
+  string requesterUserId = 3;
+  repeated string requesterRoles = 4;
+}
+
+message FindAllProjectsRequest {
+  uint32 page = 1;
+  uint32 limit = 2;
+  string search = 3;
+  string requesterUserId = 4;
+  repeated string requesterRoles = 5;
+}
+
+message FindOneProjectRequest {
+  string projectId = 1;
+  string requesterUserId = 2;
+  repeated string requesterRoles = 3;
+}
+
+message UpdateProjectRequest {
+  string projectId = 1;
+  string name = 2;
+  string description = 3;
+  string requesterUserId = 4;
+  repeated string requesterRoles = 5;
+}
+
+message DeleteProjectRequest {
+  string projectId = 1;
+  string requesterUserId = 2;
+  repeated string requesterRoles = 3;
+}
+
+message ProjectItem {
+  string projectId = 1;
+  string name = 2;
+  string description = 3;
+  string createdBy = 4;
+  string updatedBy = 5;
+}
+
+message CreateProjectResponse {
+  ProjectItem item = 1;
+}
+
+message FindAllProjectsResponse {
+  repeated ProjectItem items = 1;
+  uint32 page = 2;
+  uint32 limit = 3;
+  uint32 total = 4;
+}
+
+message FindOneProjectResponse {
+  ProjectItem item = 1;
+}
+
+message UpdateProjectResponse {
+  ProjectItem item = 1;
+}
+
+message DeleteProjectResponse {
+  bool success = 1;
+  string projectId = 2;
+  string message = 3;
+}

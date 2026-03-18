@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Element {
+  elementId  String   @id @default(cuid()) @map("element_id")
+  projectId  String   @map("project_id")
+  type       String
+  x          Float
+  y          Float
+  z          Float
+  width      Float
+  height     Float
+  depth      Float
+  color      String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([projectId])
+  @@map("elements")
+}

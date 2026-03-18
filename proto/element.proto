@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package element;
+
+service ElementService {
+  rpc GetHealth (GetHealthRequest) returns (GetHealthResponse);
+  rpc SaveProjectElements (SaveProjectElementsRequest) returns (SaveProjectElementsResponse);
+  rpc ListProjectElements (ListProjectElementsRequest) returns (ListProjectElementsResponse);
+}
+
+message GetHealthRequest {}
+
+message GetHealthResponse {
+  string service = 1;
+  string status = 2;
+}
+
+message ElementItem {
+  string elementId = 1;
+  string projectId = 2;
+  string type = 3;
+  double x = 4;
+  double y = 5;
+  double z = 6;
+  double width = 7;
+  double height = 8;
+  double depth = 9;
+  string color = 10;
+}
+
+message ElementInput {
+  string type = 1;
+  double x = 2;
+  double y = 3;
+  double z = 4;
+  double width = 5;
+  double height = 6;
+  double depth = 7;
+  string color = 8;
+}
+
+message SaveProjectElementsRequest {
+  string projectId = 1;
+  repeated ElementInput elements = 2;
+  string requesterUserId = 3;
+  repeated string requesterRoles = 4;
+}
+
+message SaveProjectElementsResponse {
+  string projectId = 1;
+  repeated ElementItem elements = 2;
+  uint32 savedCount = 3;
+}
+
+message ListProjectElementsRequest {
+  string projectId = 1;
+  string requesterUserId = 2;
+  repeated string requesterRoles = 3;
+}
+
+message ListProjectElementsResponse {
+  string projectId = 1;
+  repeated ElementItem elements = 2;
+}
