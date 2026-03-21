@@ -5,10 +5,10 @@ import { PrismaClient } from '@gen-auth/client';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   constructor() {
-    const connectionString = process.env.DATABASE_URL;
+    const connectionString = process.env.AUTH_DATABASE_URL;
 
     if (!connectionString) {
-      throw new Error('Missing DATABASE_URL environment variable');
+      throw new Error('Missing AUTH_DATABASE_URL environment variable');
     }
 
     super({

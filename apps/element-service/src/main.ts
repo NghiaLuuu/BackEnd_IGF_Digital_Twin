@@ -4,7 +4,6 @@ import { ElementServiceModule } from './element-service.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { ValidationPipe } from '@nestjs/common';
 import { config as loadEnv } from 'dotenv';
-import { resolve } from 'node:path';
 import {
   GRPC_ELEMENT_PACKAGE,
   getGrpcElementProtoPath,
@@ -12,7 +11,7 @@ import {
 } from '@shared';
 
 async function bootstrap() {
-  loadEnv({ path: resolve(process.cwd(), 'apps/element-service/.env') });
+  loadEnv();
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     ElementServiceModule,

@@ -4,7 +4,6 @@ import { AuthServiceModule } from './auth-service.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { ValidationPipe } from '@nestjs/common';
 import { config as loadEnv } from 'dotenv';
-import { resolve } from 'node:path';
 import {
   GRPC_AUTH_PACKAGE,
   getGrpcAuthProtoPath,
@@ -12,7 +11,7 @@ import {
 } from '@shared';
 
 async function bootstrap() {
-  loadEnv({ path: resolve(process.cwd(), 'apps/auth-service/.env') });
+  loadEnv();
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AuthServiceModule,
